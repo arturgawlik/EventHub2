@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule, MatInputModule, MatStepperModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,6 +12,7 @@ import { HomeDashboardComponent } from './Components/home-dashboard/home-dashboa
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './Routing/app-routing/app-routing.module';
 import { AddEventComponent } from './Components/add-event/add-event.component';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,13 @@ import { AddEventComponent } from './Components/add-event/add-event.component';
     MatCardModule,
     MatMenuModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    CommonModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
