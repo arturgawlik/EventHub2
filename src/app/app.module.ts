@@ -3,18 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './Components/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
-import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
+import { HomeDashboardComponent } from './Components/home-dashboard/home-dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppRoutingModule } from './app-routing/app-routing.module';
+import { AppRoutingModule } from './Routing/app-routing/app-routing.module';
+import { AddEventComponent } from './Components/add-event/add-event.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    HomeDashboardComponent
+    HomeDashboardComponent,
+    AddEventComponent
   ],
   imports: [
     BrowserModule,
