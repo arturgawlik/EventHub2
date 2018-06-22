@@ -24,7 +24,7 @@
             <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onChooseLocation($event)">
               <agm-marker [latitude]="latChoosen" [longitude]="lngChoosen"></agm-marker>
             </agm-map>
-            <mat-form-field style="width: max-content">
+            <mat-form-field style="width: 100%">
               <input matInput placeholder="Location description" formControlName="LocationDescription" required>
             </mat-form-field>
             <div>
@@ -35,7 +35,33 @@
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Tags</ng-template>
-          You are now done.
+          <mat-form-field style="width: 100%;">
+            <mat-chip-list #chipList>
+              <mat-chip
+                *ngFor="let fruit of Tags"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(fruit)">
+                {{fruit}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="Add some tags that will help find your event"
+                #tagInput
+                [formControl]="tagCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+              />
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let fruit of filteredTags | async" [value]="fruit">
+                {{ fruit }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
