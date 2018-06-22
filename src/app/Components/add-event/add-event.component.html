@@ -6,9 +6,12 @@
       <mat-horizontal-stepper [linear]="isLinear" #stepper>
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <mat-form-field>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+            <ng-template matStepLabel>Base information</ng-template>
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Name" formControlName="Name" required>
+            </mat-form-field>
+            <mat-form-field style="width: 100%">
+              <textarea matInput placeholder="Description" formControlName="Description" required></textarea>
             </mat-form-field>
             <div>
               <button mat-button matStepperNext>Next</button>
@@ -17,9 +20,12 @@
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
           <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Fill out your address</ng-template>
-            <mat-form-field>
-              <input matInput placeholder="Address" formControlName="secondCtrl" required>
+            <ng-template matStepLabel>Where</ng-template>
+            <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onChooseLocation($event)">
+              <agm-marker [latitude]="latChoosen" [longitude]="lngChoosen"></agm-marker>
+            </agm-map>
+            <mat-form-field style="width: max-content">
+              <input matInput placeholder="Location description" formControlName="LocationDescription" required>
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>
@@ -28,7 +34,7 @@
           </form>
         </mat-step>
         <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
+          <ng-template matStepLabel>Tags</ng-template>
           You are now done.
           <div>
             <button mat-button matStepperPrevious>Back</button>

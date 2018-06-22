@@ -9,19 +9,35 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddEventComponent implements OnInit {
 
-  isLinear = false;
+  isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+
+  lat: number = 50.0647;
+  lng: number = 19.9450;
+
+  latChoosen: number = null;
+  lngChoosen: number = null;
 
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      Name: ['', Validators.required],
+      Description: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
+      LocationDescription: ['', Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+  }
+
+  onChooseLocation(event) {
+    this.latChoosen = event.coords.lat;
+    this.lngChoosen = event.coords.lng;
   }
 
 }

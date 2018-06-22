@@ -1,3 +1,8 @@
 .add-event-card {
-  
+  margin: 20px;
+}
+
+agm-map {
+  height: 400px;
+  margin: 20px;
 }

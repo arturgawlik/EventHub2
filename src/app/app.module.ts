@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule, MatInputModule, MatStepperModule} from '@angular/material';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,6 +42,9 @@ import {CommonModule} from '@angular/common';
     CommonModule,
     MatInputModule,
     MatFormFieldModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAFSI2KquMn0K9Yh0GhsOT0x-_m7R8lCJ8'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
