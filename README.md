@@ -13,6 +13,8 @@ Linki:
 <br>
 -<a href="https://trello.com/b/pLCR6nx2/eventhub">System zarządzania Trello</a>
 <br>
+-<a href="coś tu będzie">Prototyp</a>
+<br>
 
 
 
