@@ -16,6 +16,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './Routing/app-routing/app-routing.module';
 import { AddEventComponent } from './Components/add-event/add-event.component';
 import {CommonModule} from '@angular/common';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuth} from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AuthService } from './Services/auth/auth.service';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+
+export const firebaseConfig = {
+  apiKey: 'AIzaSyDGJG6xRGqfInK8uzNqDswP-EA40aA_8oQ',
+  authDomain: 'eventhub-d00b1.firebaseapp.com',
+  databaseURL: 'https://eventhub-d00b1.firebaseio.com',
+  projectId: 'eventhub-d00b1',
+  storageBucket: 'eventhub-d00b1.appspot.com',
+  messagingSenderId: '693037729779'
+}
+
 
 @NgModule({
   declarations: [
@@ -48,9 +65,13 @@ import {CommonModule} from '@angular/common';
       apiKey: 'AIzaSyAFSI2KquMn0K9Yh0GhsOT0x-_m7R8lCJ8'
     }),
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [AngularFireAuth, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
