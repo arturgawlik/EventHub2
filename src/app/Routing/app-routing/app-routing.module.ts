@@ -3,11 +3,13 @@ import { RouterModule, Routes, Router } from '@angular/router';
 import { HomeDashboardComponent } from '../../Components/home-dashboard/home-dashboard.component';
 import { AddEventComponent } from '../../Components/add-event/add-event.component';
 import { AuthService } from 'src/app/Services/auth/auth.service';
+import { LoginComponent } from '../../Components/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeDashboardComponent },
   { path: 'home', component: HomeDashboardComponent },
-  { path: 'add', component: AddEventComponent }
+  { path: 'add', component: AddEventComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
@@ -21,13 +23,13 @@ export class AppRoutingModule {
   private user_email: string;
 
   constructor(public authService: AuthService, private router: Router) {
-    this.authService.af.authState.subscribe((auth) => {
+    this.authService.afAuth.authState.subscribe((auth) => {
       if (auth == null) {
         // not logged in
         this.isLoggedIn = false;
         this.user_displayName = '';
         this.user_email = '';
-        this.router.navigate(['Login']);
+        this.router.navigate(['login']);
       } else {
         // logged in
         this.isLoggedIn = true;

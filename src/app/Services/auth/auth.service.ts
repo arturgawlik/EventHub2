@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
-import firebase from 'firebase/app';
+import { auth } from 'firebase/app';
 
 
 @Injectable({
@@ -8,67 +8,75 @@ import firebase from 'firebase/app';
 })
 export class AuthService {
 
-  constructor(public af: AngularFireAuth) { }
+  constructor(public afAuth: AngularFireAuth) { }
 
-  doFacebookLogin() {
-    return new Promise<any>((resolve, reject) => {
-      // tslint:disable-next-line:prefer-const
-      let provider = new firebase.auth.FacebookAuthProvider();
-      this.af.auth
-        .signInWithPopup(provider)
-        .then(res => {
-          resolve(res);
-        }, err => {
-          console.log(err);
-          reject(err);
-        });
-    });
+  login() {
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
 
-
-  doGoogleLogin() {
-    return new Promise<any>((resolve, reject) => {
-      // tslint:disable-next-line:prefer-const
-      let provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      this.af.auth
-        .signInWithPopup(provider)
-        .then(res => {
-          resolve(res);
-        }, err => {
-          console.log(err);
-          reject(err);
-        });
-    });
+  logout() {
+    this.afAuth.auth.signOut();
   }
 
-  doRegister(value) {
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-        .then(res => {
-          resolve(res);
-        }, err => reject(err));
-    });
-  }
+  // doFacebookLogin() {
+  //   return new Promise<any>((resolve, reject) => {
+  //     // tslint:disable-next-line:prefer-const
+  //     let provider = new firebase.auth.FacebookAuthProvider();
+  //     this.af.auth
+  //       .signInWithPopup(provider)
+  //       .then(res => {
+  //         resolve(res);
+  //       }, err => {
+  //         console.log(err);
+  //         reject(err);
+  //       });
+  //   });
+  // }
 
-  doLogin(value) {
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
-        .then(res => {
-          resolve(res);
-        }, err => reject(err));
-    });
-  }
 
-  doLogout() {
-    return new Promise((resolve, reject) => {
-      if (firebase.auth().currentUser) {
-        this.af.auth.signOut();
-        resolve();
-      } else {
-        reject();
-      }
-    });
-  }
+  // doGoogleLogin() {
+  //   return new Promise<any>((resolve, reject) => {
+  //     // tslint:disable-next-line:prefer-const
+  //     let provider = new firebase.auth.GoogleAuthProvider();
+  //     provider.addScope('profile');
+  //     provider.addScope('email');
+  //     this.af.auth
+  //       .signInWithPopup(provider)
+  //       .then(res => {
+  //         resolve(res);
+  //       }, err => {
+  //         console.log(err);
+  //         reject(err);
+  //       });
+  //   });
+  // }
+
+  // doRegister(value) {
+  //   return new Promise<any>((resolve, reject) => {
+  //     firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
+  //       .then(res => {
+  //         resolve(res);
+  //       }, err => reject(err));
+  //   });
+  // }
+
+  // doLogin(value) {
+  //   return new Promise<any>((resolve, reject) => {
+  //     firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+  //       .then(res => {
+  //         resolve(res);
+  //       }, err => reject(err));
+  //   });
+  // }
+
+  // doLogout() {
+  //   return new Promise((resolve, reject) => {
+  //     if (firebase.auth().currentUser) {
+  //       this.af.auth.signOut();
+  //       resolve();
+  //     } else {
+  //       reject();
+  //     }
+  //   });
+  // }
 }

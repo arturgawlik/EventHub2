@@ -22,6 +22,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AuthService } from './Services/auth/auth.service';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { LoginComponent } from './Components/login/login.component';
 
 
 export const firebaseConfig = {
@@ -39,7 +40,8 @@ export const firebaseConfig = {
     AppComponent,
     NavComponent,
     HomeDashboardComponent,
-    AddEventComponent
+    AddEventComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
