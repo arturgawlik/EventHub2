@@ -24,7 +24,7 @@ import { AuthService } from './Services/auth/auth.service';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { LoginComponent } from './Components/login/login.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { BannerComponent } from './banner/banner.component';
+import { BannerComponent } from './Components/banner/banner.component';
 
 
 export const firebaseConfig = {
@@ -34,7 +34,7 @@ export const firebaseConfig = {
   projectId: 'eventhub-d00b1',
   storageBucket: 'eventhub-d00b1.appspot.com',
   messagingSenderId: '693037729779'
-}
+};
 
 
 @NgModule({
@@ -43,7 +43,7 @@ export const firebaseConfig = {
     NavComponent,
     HomeDashboardComponent,
     AddEventComponent,
-    LoginComponent
+    LoginComponent,
     BannerComponent
   ],
   imports: [
