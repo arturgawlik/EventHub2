@@ -6,24 +6,24 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class TagService {
 
-  private baseEventPath = '/tag';
+  private baseTagPath = '/tag';
 
   constructor(private db: AngularFireDatabase) { }
 
   getAllTags() {
-    return this.db.list<ITag>(this.baseEventPath);
+    return this.db.list<ITag>(this.baseTagPath);
   }
 
   isExists(tag: ITag) {
-    let item = this.db.list<ITag>(this.baseEventPath, ref => ref.equalTo(tag.value));
+    let item = this.db.list<ITag>(this.baseTagPath, ref => ref.equalTo(tag.value));
     return item != null;
   }
 
   save(tag: ITag) {
-    this.db.list<ITag>(this.baseEventPath).push(tag);
+    this.db.list<ITag>(this.baseTagPath).push(tag);
   }
 }
 
-interface ITag {
+export interface ITag {
   value: string;
 }
