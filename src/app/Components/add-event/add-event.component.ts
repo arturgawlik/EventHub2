@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {FormControl} from '@angular/forms';
-import {MatAutocompleteSelectedEvent, MatChipInputEvent} from '@angular/material';
+import {MatAutocompleteSelectedEvent, MatChipInputEvent, DateAdapter} from '@angular/material';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
@@ -55,10 +55,11 @@ export class AddEventComponent implements OnInit {
   latChoosen: number = null;
   lngChoosen: number = null;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, private adapter: DateAdapter<any>) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
       map((tag: string | null) => tag ? this.filter(tag) : this.allTags.slice()));
+      adapter.setLocale("pl");
   }
 
   ngOnInit() {

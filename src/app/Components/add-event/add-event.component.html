@@ -13,6 +13,18 @@
             <mat-form-field style="width: 100%">
               <textarea matInput placeholder="Description" formControlName="Description" required></textarea>
             </mat-form-field>
+            <span style="flex: 1 1 auto;"></span>
+            <mat-form-field>
+                <input matInput [matDatepicker]="dp1" placeholder="Start date" disabled>
+                <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput [matDatepicker]="dp2" placeholder="End date" disabled>
+                  <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                  <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                </mat-form-field>
+                <span style="flex: 1 1 auto;"></span>
             <div>
               <button mat-button matStepperNext>Next</button>
             </div>

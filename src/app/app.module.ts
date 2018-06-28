@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatStepperModule} from '@angular/material';
+import {MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatStepperModule, MatNativeDateModule} from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
 import {MatChipsModule} from '@angular/material/chips';
 
@@ -23,6 +23,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AuthService } from './Services/auth/auth.service';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { LoginComponent } from './Components/login/login.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 export const firebaseConfig = {
@@ -71,7 +72,9 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [AngularFireAuth, AuthService],
   bootstrap: [AppComponent]
