@@ -24,6 +24,7 @@ import { AuthService } from './Services/auth/auth.service';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { LoginComponent } from './Components/login/login.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { BannerComponent } from './banner/banner.component';
 
 
 export const firebaseConfig = {
@@ -43,6 +44,7 @@ export const firebaseConfig = {
     HomeDashboardComponent,
     AddEventComponent,
     LoginComponent
+    BannerComponent
   ],
   imports: [
     BrowserModule,
