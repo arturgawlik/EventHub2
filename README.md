@@ -15,6 +15,9 @@ Linki:
 <br>
 -<a href="coś tu będzie">Prototyp</a>
 <br>
+-<a href="coś tu bedzie">Działająca aplikacja</a>
+<br>
+
 
 
 
