@@ -1,10 +1,13 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {FormControl} from '@angular/forms';
-import {MatAutocompleteSelectedEvent, MatChipInputEvent, DateAdapter} from '@angular/material';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { FormControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent, MatChipInputEvent, DateAdapter } from '@angular/material';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { IEvent, EventService } from '../../Services/event/event.service';
+import { AuthService } from '../../Services/auth/auth.service';
+import { TagService } from '../../Services/tag/tag.service';
 
 
 @Component({
@@ -26,7 +29,7 @@ export class AddEventComponent implements OnInit {
 
   filteredTags: Observable<any[]>;
 
-  Tags = [];
+  tags = [];
 
   allTags = [
     'C#',
@@ -55,20 +58,22 @@ export class AddEventComponent implements OnInit {
   latChoosen: number = null;
   lngChoosen: number = null;
 
-  constructor(private _formBuilder: FormBuilder, private adapter: DateAdapter<any>) {
+  constructor(private _formBuilder: FormBuilder, private adapter: DateAdapter<any>, private auth: AuthService, private eventService: EventService, private tagService: TagService) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
       map((tag: string | null) => tag ? this.filter(tag) : this.allTags.slice()));
-      adapter.setLocale("pl");
+    adapter.setLocale("pl");
   }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      Name: ['', Validators.required],
-      Description: ['', Validators.required]
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      LocationDescription: ['', Validators.required]
+      locationDescription: ['', Validators.required]
     });
     this.thirdFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
@@ -80,7 +85,7 @@ export class AddEventComponent implements OnInit {
     this.lngChoosen = event.coords.lng;
   }
 
-  //chips
+  //clips
 
   @ViewChild('tagInput') tagInput: ElementRef;
 
@@ -90,7 +95,7 @@ export class AddEventComponent implements OnInit {
     const value = event.value;
 
     if ((value || '').trim()) {
-      this.Tags.push(value.trim());
+      this.tags.push(value.trim());
     }
 
     if (input) {
@@ -101,10 +106,10 @@ export class AddEventComponent implements OnInit {
   }
 
   remove(tag: any): void {
-    const index = this.Tags.indexOf(tag);
+    const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
-      this.Tags.splice(index, 1);
+      this.tags.splice(index, 1);
     }
   }
 
@@ -114,8 +119,46 @@ export class AddEventComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.Tags.push(event.option.viewValue);
+    this.tags.push(event.option.viewValue);
     this.tagInput.nativeElement.value = '';
     this.tagCtrl.setValue(null);
+  }
+
+  save() {
+    console.log(this.firstFormGroup);
+    console.log(this.secondFormGroup);
+    console.log(this.thirdFormGroup);
+
+    if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup) {
+      // let startDate = this.firstFormGroup.value['StartDate'].toDateString();
+      // let endDate = this.firstFormGroup.value['EndDate'].toDateString();
+
+      let event: IEvent = {
+        name: this.firstFormGroup.value['name'],
+        description: this.firstFormGroup.value['description'],
+        addDate: new Date().toDateString(),
+        startDate: this.firstFormGroup.value['startDate'].toDateString(),
+        endDate: this.firstFormGroup.value['endDate'].toDateString(),
+        address: this.firstFormGroup.value['address'],
+        lat: this.latChoosen,
+        lng: this.lngChoosen,
+        locationDescription: this.secondFormGroup.value['locationDescription'],
+        userId: this.auth.afAuth.auth.currentUser.email,
+        arrives: 0,
+        tags: this.tags
+      }
+
+      this.eventService.save(event);
+
+      for (let tag of this.tags) {
+        this.tagService.save({
+          value: tag
+        });
+      }
+
+      // this.snackBar.open('Done','Event has been added', {
+      //   duration: 3000,
+      // });
+    }
   }
 }

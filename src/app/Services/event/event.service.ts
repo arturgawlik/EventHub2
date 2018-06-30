@@ -26,8 +26,8 @@ export class EventService {
 
 }
 
-interface IEvent {
-  id: string;
+export interface IEvent {
+  id?: string;
   name: string;
   description: string;
   addDate: string;
@@ -35,6 +35,7 @@ interface IEvent {
   endDate: string;
   lat: number;
   lng: number;
+  locationDescription: string;
   address: string;
   userId: string;
   arrives: number;  
