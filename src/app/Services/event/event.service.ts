@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class EventService {
 
-  private baseEventPath = '/tag';
+  private baseEventPath = '/event';
 
   constructor(private db: AngularFireDatabase) { }
 
@@ -36,7 +36,6 @@ export interface IEvent {
   lat: number;
   lng: number;
   locationDescription: string;
-  address: string;
   userId: string;
   arrives: number;  
   tags: Array<ITag>;

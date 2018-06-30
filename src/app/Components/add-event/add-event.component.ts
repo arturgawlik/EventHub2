@@ -139,7 +139,6 @@ export class AddEventComponent implements OnInit {
         addDate: new Date().toDateString(),
         startDate: this.firstFormGroup.value['startDate'].toDateString(),
         endDate: this.firstFormGroup.value['endDate'].toDateString(),
-        address: this.firstFormGroup.value['address'],
         lat: this.latChoosen,
         lng: this.lngChoosen,
         locationDescription: this.secondFormGroup.value['locationDescription'],
