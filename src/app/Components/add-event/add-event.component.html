@@ -8,19 +8,19 @@
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Base information</ng-template>
             <mat-form-field style="width: 100%">
-              <input matInput placeholder="Name" formControlName="name" required>
+              <input matInput placeholder="Name" formControlName="Name" required>
             </mat-form-field>
             <mat-form-field style="width: 100%">
-              <textarea matInput placeholder="Description" formControlName="description" required></textarea>
+              <textarea matInput placeholder="Description" formControlName="Description" required></textarea>
             </mat-form-field>
             <span style="flex: 1 1 auto;"></span>
             <mat-form-field>
-                <input matInput formControlName="startDate" [matDatepicker]="dp1" placeholder="Start date">
+                <input matInput [matDatepicker]="dp1" placeholder="Start date" disabled>
                 <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                 <mat-datepicker #dp1 disabled="false"></mat-datepicker>
               </mat-form-field>
               <mat-form-field>
-                  <input matInput formControlName="endDate" [matDatepicker]="dp2" placeholder="End date">
+                  <input matInput [matDatepicker]="dp2" placeholder="End date" disabled>
                   <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
                   <mat-datepicker #dp2 disabled="false"></mat-datepicker>
                 </mat-form-field>
@@ -37,7 +37,7 @@
               <agm-marker [latitude]="latChoosen" [longitude]="lngChoosen"></agm-marker>
             </agm-map>
             <mat-form-field style="width: 100%">
-              <input matInput placeholder="Location description" formControlName="locationDescription" required>
+              <input matInput placeholder="Location description" formControlName="LocationDescription" required>
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>
@@ -50,7 +50,7 @@
           <mat-form-field style="width: 100%;">
             <mat-chip-list #chipList>
               <mat-chip
-                *ngFor="let fruit of tags"
+                *ngFor="let fruit of Tags"
                 [selectable]="selectable"
                 [removable]="removable"
                 (removed)="remove(fruit)">
@@ -76,7 +76,7 @@
           </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="save()">Save</button>
+            <button mat-button (click)="stepper.reset()">Save</button>
           </div>
         </mat-step>
       </mat-horizontal-stepper>
