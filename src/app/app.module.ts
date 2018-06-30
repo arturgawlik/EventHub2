@@ -25,6 +25,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { LoginComponent } from './Components/login/login.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BannerComponent } from './Components/banner/banner.component';
+import { EventService } from './Services/event/event.service';
+import { TagService } from './Services/tag/tag.service';
 
 
 export const firebaseConfig = {
@@ -44,7 +46,7 @@ export const firebaseConfig = {
     HomeDashboardComponent,
     AddEventComponent,
     LoginComponent,
-    BannerComponent
+    BannerComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,7 @@ export const firebaseConfig = {
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [AngularFireAuth, AuthService],
+  providers: [AngularFireAuth, AuthService, EventService, TagService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
