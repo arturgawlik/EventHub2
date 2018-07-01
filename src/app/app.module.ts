@@ -28,6 +28,7 @@ import { BannerComponent } from './Components/banner/banner.component';
 import { EventService } from './Services/event/event.service';
 import { TagService } from './Services/tag/tag.service';
 import { FavouriteComponent } from './Components/favourite/favourite.component';
+import { FindComponent } from './Components/find/find.component';
 
 
 export const firebaseConfig = {
@@ -48,7 +49,8 @@ export const firebaseConfig = {
     AddEventComponent,
     LoginComponent,
     BannerComponent,
-    FavouriteComponent
+    FavouriteComponent,
+    FindComponent
 
   ],
   imports: [

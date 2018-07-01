@@ -1,0 +1,37 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Favourite</h1>
+  <div>
+    <button mat-button (click)="getAll()">Load</button>
+  </div>
+  <mat-grid-list cols="1" rowHeight="600px">
+    <mat-grid-tile *ngFor="let item of items | async" [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+             {{ item.name }}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Sybskrybuj</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+        <mat-list>
+          <mat-list-item>  Data dodania: {{ item.addDate }} </mat-list-item>
+          <mat-list-item> Zapisanych osób; {{ item.arrives }} </mat-list-item>
+          <mat-list-item>  Opis wydarzenia: {{ item.description }} </mat-list-item>
+          <mat-list-item> Zakończenie ewentu: {{ item.endDate }} </mat-list-item>
+          <mat-list-item>  {{ item.lat }}  </mat-list-item>
+          <mat-list-item>  {{ item.lng }}  </mat-list-item>
+          <mat-list-item>  Opis lokalizacji: {{ item.locationDescription }} </mat-list-item>
+          <mat-list-item>  Czas rozpoczęcia: {{ item.startDate }}  </mat-list-item>
+          <mat-list-item>  Tagi: {{ item.tags }}  </mat-list-item>
+          <mat-list-item> Dodane przez: {{ item.userId }} </mat-list-item>
+        </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

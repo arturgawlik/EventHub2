@@ -5,6 +5,7 @@ import { AddEventComponent } from '../../Components/add-event/add-event.componen
 import { AuthService } from 'src/app/Services/auth/auth.service';
 import { LoginComponent } from '../../Components/login/login.component';
 import { FavouriteComponent } from '../../Components/favourite/favourite.component';
+import { FindComponent } from '../../Components/find/find.component';
 
 const routes: Routes = [
   { path: '', component: HomeDashboardComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'add', component: AddEventComponent },
   { path: 'login', component: LoginComponent },
   { path: 'favourite', component: FavouriteComponent },
+  { path: 'find', component: FindComponent }
 ];
 
 @NgModule({
