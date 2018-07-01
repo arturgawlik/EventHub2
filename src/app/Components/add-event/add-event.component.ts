@@ -8,6 +8,7 @@ import { map, startWith } from 'rxjs/operators';
 import { IEvent, EventService } from '../../Services/event/event.service';
 import { AuthService } from '../../Services/auth/auth.service';
 import { TagService } from '../../Services/tag/tag.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -58,7 +59,12 @@ export class AddEventComponent implements OnInit {
   latChoosen: number = null;
   lngChoosen: number = null;
 
-  constructor(private _formBuilder: FormBuilder, private adapter: DateAdapter<any>, private auth: AuthService, private eventService: EventService, private tagService: TagService) {
+  constructor(private _formBuilder: FormBuilder,
+    private adapter: DateAdapter<any>, 
+    private auth: AuthService, 
+    private eventService: EventService, 
+    private tagService: TagService,
+    private router: Router) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
       map((tag: string | null) => tag ? this.filter(tag) : this.allTags.slice()));
@@ -118,6 +124,10 @@ export class AddEventComponent implements OnInit {
       tag.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
 
+  // filter(name: string) {
+  //   return this.tagService.getAllTags()
+  // }
+
   selected(event: MatAutocompleteSelectedEvent): void {
     this.tags.push(event.option.viewValue);
     this.tagInput.nativeElement.value = '';
@@ -150,9 +160,13 @@ export class AddEventComponent implements OnInit {
       this.eventService.save(event);
 
       for (let tag of this.tags) {
+        if (!this.tagService.isExists({value: tag}))
         this.tagService.save({
           value: tag
         });
+
+        this.router.navigate(['']);
+
       }
 
       // this.snackBar.open('Done','Event has been added', {

@@ -15,8 +15,16 @@ export class TagService {
   }
 
   isExists(tag: ITag) {
-    let item = this.db.list<ITag>(this.baseTagPath, ref => ref.equalTo(tag.value));
-    return item != null;
+    return false;
+    //TODO
+    // let item = this.db.list<ITag>(this.baseTagPath);
+    // let item2 = item.query.equalTo(tag.value);
+    // let item3 = item2.toJSON();
+    // item2.("value", (snapshot) => {
+    //   item3 = snapshot.exists();
+    //   console.log(snapshot.exists());
+    // })
+    // return item3;
   }
 
   save(tag: ITag) {
