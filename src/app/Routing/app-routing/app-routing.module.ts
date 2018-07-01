@@ -4,12 +4,14 @@ import { HomeDashboardComponent } from '../../Components/home-dashboard/home-das
 import { AddEventComponent } from '../../Components/add-event/add-event.component';
 import { AuthService } from 'src/app/Services/auth/auth.service';
 import { LoginComponent } from '../../Components/login/login.component';
+import { FavouriteComponent } from '../../Components/favourite/favourite.component';
 
 const routes: Routes = [
   { path: '', component: HomeDashboardComponent },
   { path: 'home', component: HomeDashboardComponent },
   { path: 'add', component: AddEventComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'favourite', component: FavouriteComponent },
 ];
 
 @NgModule({
