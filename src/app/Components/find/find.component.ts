@@ -8,23 +8,103 @@ import { map, startWith } from 'rxjs/operators';
 import { IEvent, EventService } from '../../Services/event/event.service';
 import { AuthService } from '../../Services/auth/auth.service';
 import { TagService } from '../../Services/tag/tag.service';
- 
- 
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'find',
   templateUrl: './find.component.html',
   styleUrls: ['./find.component.css']
 })
 export class FindComponent {
- 
-items: Observable<any[]>;
- 
- 
-  constructor(private eventService: EventService ) { }
- 
-  getAll() {
-    this.items = this.eventService.getAll();
-    console.log(this.items);
+
+  visible: boolean = true;
+  selectable: boolean = true;
+  removable: boolean = true;
+  addOnBlur: boolean = false;
+
+  separatorKeysCodes = [ENTER, COMMA];
+
+  tagCtrl = new FormControl();
+
+  filteredTags: Observable<any[]>;
+
+  tags = [];
+
+  allTags = [
+  ];
+
+
+  isLinear = true;
+  thirdFormGroup: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder,
+    private adapter: DateAdapter<any>,
+    private auth: AuthService,
+    private eventService: EventService,
+    private tagService: TagService,
+    private router: Router) {
+    this.filteredTags = this.tagCtrl.valueChanges.pipe(
+      startWith(null),
+      map((tag: string | null) => tag ? this.filter(tag) : this.allTags.slice()));
+    adapter.setLocale("pl");
   }
- 
+
+  ngOnInit() {
+    this.thirdFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+  }
+
+  //clips
+
+  @ViewChild('tagInput') tagInput: ElementRef;
+
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      this.tags.push(value.trim());
+    }
+
+    if (input) {
+      input.value = '';
+    }
+
+    this.tagCtrl.setValue(null);
+  }
+
+  remove(tag: any): void {
+    const index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+  }
+
+  filter(name: string) {
+    return this.allTags.filter(tag =>
+      tag.toLowerCase().indexOf(name.toLowerCase()) === 0);
+  }
+
+  // filter(name: string) {
+  //   return this.tagService.getAllTags()
+  // }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.tags.push(event.option.viewValue);
+    this.tagInput.nativeElement.value = '';
+    this.tagCtrl.setValue(null);
+  }
+
+  save() {
+  }
+
+  // this.snackBar.open('Done','Event has been added', {
+  //   duration: 3000,
+  // });
+
 }
+

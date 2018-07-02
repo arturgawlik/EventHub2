@@ -11,7 +11,7 @@ export class TagService {
   constructor(private db: AngularFireDatabase) { }
 
   getAllTags() {
-    return this.db.list<ITag>(this.baseTagPath);
+    return this.db.list<ITag>(this.baseTagPath );
   }
 
   isExists(tag: ITag) {
