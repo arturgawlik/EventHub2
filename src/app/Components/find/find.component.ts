@@ -3,12 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatChipInputEvent, DateAdapter } from '@angular/material';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { IEvent, EventService } from '../../Services/event/event.service';
 import { AuthService } from '../../Services/auth/auth.service';
 import { TagService } from '../../Services/tag/tag.service';
 import { Router } from '@angular/router';
+import { filter, catchError, mergeMap } from 'rxjs/operators';
+
 
 
 @Component({
@@ -110,7 +112,29 @@ export class FindComponent {
   // });
 
   loadRightEvents(): void {
-    
+    this.matchEvents = this.eventService.getAll().pipe(
+      filter(a => true),
+      map(b => {
+        let outputArray: Array<IEvent> = new Array<IEvent>();
+        let canAdd: boolean;
+        for (let index = 0; index < b.length; index++) {
+        const element: IEvent = b[index];
+        
+          for (let index2 = 0; index2 < this.tags.length; index2++) {
+            const element2 = this.tags[index2];
+            if (element.tags.indexOf(element2) < 0) {
+              canAdd = false;
+              break;
+            }
+            else
+              canAdd = true;
+          }
+          if (canAdd)
+            outputArray.push(element);
+      }
+      return outputArray;
+    })
+    )
   }
 
 }
