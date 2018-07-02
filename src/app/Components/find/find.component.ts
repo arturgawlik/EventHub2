@@ -34,6 +34,7 @@ export class FindComponent {
   allTags = [
   ];
 
+  matchEvents: Observable<Array<IEvent>>;
 
   isLinear = true;
   thirdFormGroup: FormGroup;
@@ -74,6 +75,8 @@ export class FindComponent {
     }
 
     this.tagCtrl.setValue(null);
+
+    this.loadRightEvents();
   }
 
   remove(tag: any): void {
@@ -105,6 +108,10 @@ export class FindComponent {
   // this.snackBar.open('Done','Event has been added', {
   //   duration: 3000,
   // });
+
+  loadRightEvents(): void {
+    
+  }
 
 }
 
