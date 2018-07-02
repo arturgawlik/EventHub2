@@ -87,6 +87,7 @@ export class FindComponent {
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
+    this.loadRightEvents();
   }
 
   filter(name: string) {
