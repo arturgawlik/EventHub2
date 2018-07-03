@@ -125,7 +125,7 @@ export class FindComponent {
         
           for (let index2 = 0; index2 < this.tags.length; index2++) {
             const element2 = this.tags[index2];
-            if (element.tags.indexOf(element2) < 0) {
+            if (element.tags == null || element.tags == undefined || element.tags.map(i => i.toLowerCase()).indexOf(element2.toLowerCase()) < 0) {
               canAdd = false;
               break;
             }
