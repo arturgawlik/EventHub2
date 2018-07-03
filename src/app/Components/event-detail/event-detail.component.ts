@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../Services/data/data.service';
+import { IEvent } from '../../Services/event/event.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventDetailComponent implements OnInit {
 
-  constructor() { }
+  event: IEvent;
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.event = this.dataService.event;
+    console.log(this.event);
   }
 
 }

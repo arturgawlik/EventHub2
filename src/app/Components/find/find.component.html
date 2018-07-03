@@ -76,7 +76,7 @@
         <mat-card-content class="dashboard-card-content">
         <mat-list>
           <b>  Description: {{ item.description }} </b>
-          <a id = {{item.id}} routerLink="/home">Home</a>
+          <button mat-raised-button color="accent" type="button" exit_to_app (click)="edit(item)">Take a look</button>
         </mat-list>
         </mat-card-content>
       </mat-card>
