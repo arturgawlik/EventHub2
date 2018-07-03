@@ -1,18 +1,21 @@
 <mat-card class="add-event-card">
   <mat-card-title>
-    {{event.name | uppercase}}
+    {{event.name | uppercase}} {{event.startDate | date}} - {{event.endDate | date}}
   </mat-card-title>
   <mat-card-content>
 
 
     <mat-card class="add-event-card">
         <mat-card-title>
-            Map
+            Map and location description
           </mat-card-title>
       <mat-card-content>
         <agm-map [latitude]="event.lat" [longitude]="event.lng">
           <agm-marker [latitude]="event.lat" [longitude]="event.lng"></agm-marker>
         </agm-map>
+        <div style="margin: 20px;">
+          {{event.locationDescription}}
+        </div>
       </mat-card-content>
     </mat-card>
 
