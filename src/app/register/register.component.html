@@ -1,24 +1,24 @@
 
 
-<mat-card style="width: 450px; margin-left: auto; margin-right: auto; margin-bottom: 300px; margin-top: 100px;"><p style="color: rgb(15, 13, 153)">Login with email or social account</p>
+<mat-card style="width: 450px; margin-left: auto; margin-right: auto; margin-bottom: 300px; margin-top: 100px;"><p style="color: rgb(15, 13, 153)">Register using email or social account</p>
 
   <div style="margin: 0 auto">
     <div class="container">
      <div class="row">
        <div class="col-md-6 col-md-offset-3">
-         <form [formGroup]="loginForm">
+        <form [formGroup]="registerForm">
            <div class="form-group">
-             <p>Email address:</p>
+            <label>Email address</label>
              <input type="email" formControlName="email" class="form-control">
            </div>
            <div class="form-group">
-               <p>Password:</p>
+            <label>Password</label>
              <input type="password" class="form-control" formControlName="password">
              <label class="error">{{errorMessage}}</label>
+             <label class="success">{{successMessage}}</label>
            </div>
-           <p><button mat-raised-button color="primary" (click)="tryLogin(loginForm.value)">Login</button>        
-           </p>
-           </form>
+           <button mat-raised-button color="primary"  (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>    
+          </form>
        </div>
      </div>
    </div>
@@ -27,5 +27,5 @@
      <div style="width: 350px; margin-top: 80px; margin-left: 25px;"><img mat-card-image src= assets\loginfb.png (click)="tryFacebookLogin()" style="cursor: pointer" >
      <img mat-card-image src= assets\logingoogle.png (click)="tryGoogleLogin()" style="cursor: pointer" ></div>
      
-     <p>No account yet? <a routerLink="/register">Create an account</a></p>
+     <p>Already have an account? <a routerLink="/login">Login</a></p>
    </mat-card>

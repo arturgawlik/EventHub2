@@ -37,6 +37,6 @@ export interface IEvent {
   lng: number;
   locationDescription: string;
   userId: string;
-  arrives: number;  
+  arrives: number;
   tags: Array<ITag>;
 }
