@@ -42,6 +42,10 @@ import { AuthGuard } from './core/auth.guard';
 import { AuthService } from './core/auth.service';
 import { UserService } from './core/user.service';
 
+import { EventDetailComponent } from './Components/event-detail/event-detail.component';
+import { DataService } from './Services/data/data.service';
+
+
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDGJG6xRGqfInK8uzNqDswP-EA40aA_8oQ',
@@ -58,7 +62,7 @@ const routes: Routes = [
   { path: 'add', component: AddEventComponent },
   { path: 'login', component: LoginComponent },
   { path: 'favourite', component: FavouriteComponent },
-  { path: 'find', component: FindComponent }
+  { path: 'find', component: FindComponent },
 ];
 
 @NgModule({
@@ -72,7 +76,9 @@ const routes: Routes = [
     FavouriteComponent,
     FindComponent,
     UserComponent,
-    RegisterComponent
+    RegisterComponent,
+    EventDetailComponent,
+
 
   ],
   imports: [
@@ -107,7 +113,7 @@ const routes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [AngularFireAuth, AuthService, EventService, TagService],
+  providers: [AngularFireAuth, AuthService, EventService, TagService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

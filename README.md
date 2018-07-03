@@ -9,19 +9,22 @@ EventHub to Twoje narzędzie do poznawania nowych ludzi, podczas robienia tego c
 
 Linki:
 <br>
+<br>
 -<a href="https://github.com/arturgawlik/EventHub2">Repozytorium github</a>
 <br>
 -<a href="https://trello.com/b/pLCR6nx2/eventhub">System zarządzania Trello</a>
 <br>
--<a href="coś tu będzie">Prototyp</a>
+-<a href="https://marvelapp.com/3jb7jb7/screen/45157967">Prototyp</a>
 <br>
--<a href="coś tu bedzie">Działająca aplikacja</a>
 <br>
+<br>
+
 
 
 
 
 Skład zespołu:
+<br>
 <br>
 1.Mateusz Kuska
 <br>
