@@ -44,6 +44,8 @@ import { UserService } from './core/user.service';
 
 import { EventDetailComponent } from './Components/event-detail/event-detail.component';
 import { DataService } from './Services/data/data.service';
+import {MatTableModule} from '@angular/material/table';
+
 
 
 
@@ -111,7 +113,8 @@ const routes: Routes = [
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule
   ],
   providers: [AngularFireAuth, AuthService, EventService, TagService, DataService],
   bootstrap: [AppComponent]
