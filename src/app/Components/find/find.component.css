@@ -23,3 +23,11 @@
 .add-event-card {
   margin: 20px;
 }
+
+.dashboard-card2 {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+}

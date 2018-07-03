@@ -33,18 +33,6 @@ export class AddEventComponent implements OnInit {
   tags = [];
 
   allTags = [
-    'C#',
-    'C++',
-    'SQL',
-    'C',
-    'Angular',
-    'React',
-    'Liquid',
-    'Cobol',
-    'F#',
-    'Typescript',
-    'VB',
-    'Concert',
   ];
 
 

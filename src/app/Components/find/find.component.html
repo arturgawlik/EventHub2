@@ -56,29 +56,28 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+    <mat-grid-list cols="1" rowHeight="100px">
+        <mat-grid-tile *ngFor="let item of matchEvents | async" [colspan]="1" [rowspan]="1">
+          <mat-card class="dashboard-card2">
+            <mat-card-content class="dashboard-card-content">
+            <mat-list>
+              <button mat-raised-button type="button" exit_to_app (click)="edit(item)">{{item.name}} added by {{item.userId}}</button>
+            </mat-list>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
   </mat-card-content>
 </mat-card>
 
-<mat-grid-list cols="1" rowHeight="200px">
+<!-- <mat-grid-list cols="1" rowHeight="100px">
     <mat-grid-tile *ngFor="let item of matchEvents | async" [colspan]="1" [rowspan]="1">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-             {{ item.name }}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Sybskrybuj</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
+      <mat-card class="dashboard-card2">
         <mat-card-content class="dashboard-card-content">
         <mat-list>
-          <b>  Description: {{ item.description }} </b>
-          <button mat-raised-button color="accent" type="button" exit_to_app (click)="edit(item)">Take a look</button>
+          <button mat-raised-button color="accent" type="button" exit_to_app (click)="edit(item)">{{item.name}} added by {{item.userId}}</button>
         </mat-list>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-  </mat-grid-list>
+  </mat-grid-list> -->
