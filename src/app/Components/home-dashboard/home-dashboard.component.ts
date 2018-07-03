@@ -23,13 +23,17 @@ export interface PeriodicElement {
   startDate: string;
   endDate: string;
 }
-
+//TODO -> za malo czasu - dlatego tak :c
 const ELEMENT_DATA2: PeriodicElement2[] = [
   {user: 'czernecki@kamil@gmail.com', eventsAdd: 21},
   {user: 'mateuszkuskaa@gmail.com', eventsAdd: 19},
   {user: 'krzysztof.miszczyk@interia.eu', eventsAdd: 15},
   {user: 'hoofedcomic666@gmail.com', eventsAdd: 12},
-  {user: 'cgrawerjk@gmail.com', eventsAdd: 4}
+  {user: 'cgrawerjk@gmail.com', eventsAdd: 4},
+  {user: 'test4@email.com', eventsAdd: 2},
+  {user: 'test1@email.com', eventsAdd: 1},
+  {user: 'test2@email.com', eventsAdd: 1},
+  {user: 'test3@email.com', eventsAdd: 1}
 ];
 
 const ELEMENT_DATA: PeriodicElement[] = [
