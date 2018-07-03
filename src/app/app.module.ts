@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './Components/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
+// tslint:disable-next-line:max-line-length
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
 import { HomeDashboardComponent } from './Components/home-dashboard/home-dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -20,7 +21,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuth} from 'angularfire2/auth';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AuthService } from './Services/auth/auth.service';
+ // import { AuthService } from './Services/auth/auth.service';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { LoginComponent } from './Components/login/login.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -29,6 +30,18 @@ import { EventService } from './Services/event/event.service';
 import { TagService } from './Services/tag/tag.service';
 import { FavouriteComponent } from './Components/favourite/favourite.component';
 import { FindComponent } from './Components/find/find.component';
+import { RouterModule, Routes } from '@angular/router';
+import { UserComponent } from './user/user.component';
+import { RegisterComponent } from './register/register.component';
+
+
+ // auth
+import { environment } from '../environments/environment';
+import { UserResolver } from './user/user.resolver';
+import { AuthGuard } from './core/auth.guard';
+import { AuthService } from './core/auth.service';
+import { UserService } from './core/user.service';
+
 import { EventDetailComponent } from './Components/event-detail/event-detail.component';
 import { DataService } from './Services/data/data.service';
 
@@ -43,6 +56,14 @@ export const firebaseConfig = {
   messagingSenderId: '693037729779'
 };
 
+const routes: Routes = [
+  { path: '', component: HomeDashboardComponent },
+  { path: 'home', component: HomeDashboardComponent },
+  { path: 'add', component: AddEventComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'favourite', component: FavouriteComponent },
+  { path: 'find', component: FindComponent },
+];
 
 @NgModule({
   declarations: [
@@ -54,7 +75,10 @@ export const firebaseConfig = {
     BannerComponent,
     FavouriteComponent,
     FindComponent,
-    EventDetailComponent
+    UserComponent,
+    RegisterComponent,
+    EventDetailComponent,
+
 
   ],
   imports: [

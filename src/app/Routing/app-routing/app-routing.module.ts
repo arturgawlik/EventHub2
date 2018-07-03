@@ -6,7 +6,9 @@ import { AuthService } from 'src/app/Services/auth/auth.service';
 import { LoginComponent } from '../../Components/login/login.component';
 import { FavouriteComponent } from '../../Components/favourite/favourite.component';
 import { FindComponent } from '../../Components/find/find.component';
+import {RegisterComponent} from '../../register/register.component';
 import { EventDetailComponent } from '../../Components/event-detail/event-detail.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeDashboardComponent },
@@ -15,14 +17,15 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'favourite', component: FavouriteComponent },
   { path: 'find', component: FindComponent },
-  { path: 'event-detail', component: EventDetailComponent}
+  { path: 'register', component: RegisterComponent },
+  { path: 'event-detail', component: EventDetailComponent},
 ];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ]
 })
-export class AppRoutingModule { 
+export class AppRoutingModule {
 
   private isLoggedIn: boolean;
   private user_displayName: string;
