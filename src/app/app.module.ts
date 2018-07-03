@@ -29,6 +29,9 @@ import { EventService } from './Services/event/event.service';
 import { TagService } from './Services/tag/tag.service';
 import { FavouriteComponent } from './Components/favourite/favourite.component';
 import { FindComponent } from './Components/find/find.component';
+import { EventDetailComponent } from './Components/event-detail/event-detail.component';
+import { DataService } from './Services/data/data.service';
+
 
 
 export const firebaseConfig = {
@@ -50,7 +53,8 @@ export const firebaseConfig = {
     LoginComponent,
     BannerComponent,
     FavouriteComponent,
-    FindComponent
+    FindComponent,
+    EventDetailComponent
 
   ],
   imports: [
@@ -85,7 +89,7 @@ export const firebaseConfig = {
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [AngularFireAuth, AuthService, EventService, TagService],
+  providers: [AngularFireAuth, AuthService, EventService, TagService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
