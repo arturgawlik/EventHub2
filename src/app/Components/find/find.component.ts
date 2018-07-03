@@ -10,6 +10,7 @@ import { AuthService } from '../../Services/auth/auth.service';
 import { TagService } from '../../Services/tag/tag.service';
 import { Router } from '@angular/router';
 import { filter, catchError, mergeMap } from 'rxjs/operators';
+import { DataService } from '../../Services/data/data.service';
 
 
 
@@ -46,7 +47,8 @@ export class FindComponent {
     private auth: AuthService,
     private eventService: EventService,
     private tagService: TagService,
-    private router: Router) {
+    private router: Router,
+    private dataService: DataService) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
       map((tag: string | null) => tag ? this.filter(tag) : this.allTags.slice()));
@@ -136,6 +138,12 @@ export class FindComponent {
       return outputArray;
     })
     )
+  }
+
+  edit(event: IEvent) {
+    console.log(event);
+    this.dataService.event = event;
+    this.router.navigate(['event-detail'])
   }
 
 }
